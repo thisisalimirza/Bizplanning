@@ -632,6 +632,8 @@
         function showOverview() {
             const year1 = calculateRevenue(currentRevenue, 12, 4);
             const year3 = calculateRevenue(currentRevenue, 36, 4);
+            const year5 = calculateRevenue(currentRevenue, 60, 4);
+            const year10 = calculateRevenue(currentRevenue, 120, 4);
             const monthlyIncrease = currentRevenue * 0.04;
 
             document.getElementById('content').innerHTML = `
@@ -670,12 +672,21 @@
                             But in <strong style="color: #00d09c;">1 year</strong>, you'll be making <strong style="color: #00d09c;">${formatCurrency(year1)}</strong>/month.
                             <br>
                             In <strong style="color: #00d09c;">3 years</strong>, you'll be making <strong style="color: #00d09c;">${formatCurrency(year3)}</strong>/month.
+                            <br>
+                            In <strong style="color: #00d09c;">5 years</strong>, you'll be making <strong style="color: #00d09c;">${formatCurrency(year5)}</strong>/month.
+                            <br>
+                            In <strong style="color: #00d09c;">10 years</strong>? <strong style="color: #00d09c;">${formatCurrency(year10)}</strong>/month.
                         </p>
                     </div>
                 </div>
 
                 <div class="card animated">
-                    <h3>Your Journey</h3>
+                    <h3>Your Journey: Where This Actually Goes</h3>
+                    <p style="color: #999; margin-bottom: 24px;">
+                        This is the part most people don't see. The first year feels slow. But year 5? Year 10?
+                        That's when compound growth gets wild.
+                    </p>
+
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
                         <div class="timeline-content">
@@ -697,6 +708,25 @@
                         <div class="timeline-content">
                             <h4>3 Years: ${formatCurrency(year3)}/month</h4>
                             <p style="color: #999;">That's ${(year3 / currentRevenue).toFixed(1)}x what you're making now. ${formatCurrency(year3 * 12)} per year.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h4>5 Years: ${formatCurrency(year5)}/month</h4>
+                            <p style="color: #999;">This is where it gets serious. ${formatCurrency(year5 * 12)} per year. You've ${(year5 / currentRevenue).toFixed(0)}x'd your business.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h4>10 Years: ${formatCurrency(year10)}/month</h4>
+                            <p style="color: #999;">
+                                ${formatCurrency(year10 * 12)} per year. That's ${(year10 / currentRevenue).toFixed(0)}x your starting point.
+                                This is the power of compound growth that most people never see because they quit in year 1.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -760,30 +790,49 @@
             const m12 = calculateRevenue(currentRevenue, 12, rate);
             const m24 = calculateRevenue(currentRevenue, 24, rate);
             const m36 = calculateRevenue(currentRevenue, 36, rate);
+            const m60 = calculateRevenue(currentRevenue, 60, rate);
+            const m120 = calculateRevenue(currentRevenue, 120, rate);
 
             document.getElementById('projectionResults').innerHTML = `
-                <div class="metric-grid" style="margin-top: 24px;">
+                <div class="metric-grid" style="margin-top: 24px; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));">
                     <div class="metric">
                         <div class="metric-label">In 1 Year</div>
-                        <div class="metric-value">${formatCurrency(m12)}</div>
+                        <div class="metric-value" style="font-size: 20px;">${formatCurrency(m12)}</div>
                         <div class="metric-subtext">per month</div>
                     </div>
                     <div class="metric">
                         <div class="metric-label">In 2 Years</div>
-                        <div class="metric-value">${formatCurrency(m24)}</div>
+                        <div class="metric-value" style="font-size: 20px;">${formatCurrency(m24)}</div>
                         <div class="metric-subtext">per month</div>
                     </div>
                     <div class="metric">
                         <div class="metric-label">In 3 Years</div>
-                        <div class="metric-value">${formatCurrency(m36)}</div>
+                        <div class="metric-value" style="font-size: 20px;">${formatCurrency(m36)}</div>
+                        <div class="metric-subtext">per month</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">In 5 Years</div>
+                        <div class="metric-value" style="font-size: 20px;">${formatCurrency(m60)}</div>
+                        <div class="metric-subtext">per month</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">In 10 Years</div>
+                        <div class="metric-value" style="font-size: 20px;">${formatCurrency(m120)}</div>
                         <div class="metric-subtext">per month</div>
                     </div>
                 </div>
 
                 <div class="highlight-box" style="margin-top: 24px;">
-                    <div class="title">What You'll Make in 3 Years Total</div>
-                    <div class="value">${formatCurrency((m12 + m24 + m36) * 12)}</div>
+                    <div class="title">10-Year Total Revenue</div>
+                    <div class="value">${formatCurrency((m12 + m24 + m36 + m60 + m120) * 12)}</div>
                     <div class="subtitle">Growing at ${rate}% per month from ${formatCurrency(currentRevenue)}/month</div>
+                </div>
+
+                <div style="background: #0d0d0d; padding: 24px; border-radius: 8px; margin-top: 24px;">
+                    <p style="color: #999; line-height: 1.8;">
+                        At ${rate}% monthly growth, you'd ${(m120 / currentRevenue).toFixed(0)}x your business in 10 years.
+                        That's the power of compound growth — it starts slow, then explodes.
+                    </p>
                 </div>
             `;
 
@@ -924,9 +973,9 @@
                 </div>
 
                 <div class="card animated">
-                    <h3>The 3-Year Picture</h3>
+                    <h3>The Long Game: 10-Year Comparison</h3>
                     <p style="color: #999; margin-bottom: 20px; line-height: 1.6;">
-                        Here's what three years of your life looks like on different paths:
+                        Most people only think 1-2 years ahead. But here's what happens when you play the long game:
                     </p>
 
                     <div class="comparison-card">
@@ -937,49 +986,57 @@
                                 <td style="text-align: right; font-weight: 700; padding: 8px 0;">${formatCurrency(yourYear1Yearly)}</td>
                             </tr>
                             <tr>
-                                <td style="color: #999; padding: 8px 0;">Year 2</td>
-                                <td style="text-align: right; font-weight: 700; padding: 8px 0;">${formatCurrency(calculateRevenue(currentRevenue, 24, 4) * 12)}</td>
-                            </tr>
-                            <tr>
                                 <td style="color: #999; padding: 8px 0;">Year 3</td>
                                 <td style="text-align: right; font-weight: 700; padding: 8px 0;">${formatCurrency(yourYear3Yearly)}</td>
                             </tr>
-                            <tr style="border-top: 2px solid #2a2a2a;">
-                                <td style="color: #999; padding: 12px 0; font-weight: 700;">Total Earned</td>
-                                <td style="text-align: right; font-weight: 700; color: #00d09c; font-size: 20px; padding: 12px 0;">
-                                    ${formatCurrency(yourYear1Yearly + calculateRevenue(currentRevenue, 24, 4) * 12 + yourYear3Yearly)}
-                                </td>
+                            <tr>
+                                <td style="color: #999; padding: 8px 0;">Year 5</td>
+                                <td style="text-align: right; font-weight: 700; padding: 8px 0;">${formatCurrency(calculateRevenue(currentRevenue, 60, 4) * 12)}</td>
+                            </tr>
+                            <tr>
+                                <td style="color: #999; padding: 8px 0;">Year 10</td>
+                                <td style="text-align: right; font-weight: 700; padding: 8px 0;">${formatCurrency(calculateRevenue(currentRevenue, 120, 4) * 12)}</td>
                             </tr>
                         </table>
                     </div>
 
                     <div class="comparison-card" style="opacity: 0.6;">
-                        <div class="comparison-title" style="margin-bottom: 12px;">College Graduate Path</div>
+                        <div class="comparison-title" style="margin-bottom: 12px;">College Grad Job (with 3% raises)</div>
                         <table style="width: 100%;">
                             <tr>
                                 <td style="color: #999; padding: 8px 0;">Year 1</td>
                                 <td style="text-align: right; padding: 8px 0;">$0 (in school)</td>
                             </tr>
                             <tr>
-                                <td style="color: #999; padding: 8px 0;">Year 2</td>
-                                <td style="text-align: right; padding: 8px 0;">$0 (in school)</td>
-                            </tr>
-                            <tr>
                                 <td style="color: #999; padding: 8px 0;">Year 3</td>
                                 <td style="text-align: right; padding: 8px 0;">$0 (in school)</td>
                             </tr>
-                            <tr style="border-top: 2px solid #2a2a2a;">
-                                <td style="color: #999; padding: 12px 0; font-weight: 700;">Total Earned</td>
-                                <td style="text-align: right; color: #999; font-size: 20px; padding: 12px 0;">
-                                    -$80,000 (avg debt)
-                                </td>
+                            <tr>
+                                <td style="color: #999; padding: 8px 0;">Year 5</td>
+                                <td style="text-align: right; padding: 8px 0;">${formatCurrency(collegeGradAvg * 1.03)}</td>
+                            </tr>
+                            <tr>
+                                <td style="color: #999; padding: 8px 0;">Year 10</td>
+                                <td style="text-align: right; padding: 8px 0;">${formatCurrency(collegeGradAvg * Math.pow(1.03, 6))}</td>
                             </tr>
                         </table>
                     </div>
 
+                    <div style="background: #0d0d0d; padding: 24px; border-radius: 8px; margin-top: 16px;">
+                        <p style="color: #fff; line-height: 1.8; margin-bottom: 12px;">
+                            <strong style="color: #00d09c;">Year 10:</strong> You're making ${formatCurrency(calculateRevenue(currentRevenue, 120, 4) * 12)}/year.
+                            <br>
+                            The college grad who started in year 4 is making ${formatCurrency(collegeGradAvg * Math.pow(1.03, 6))}/year.
+                        </p>
+                        <p style="color: #999; line-height: 1.8;">
+                            That's a ${formatCurrency((calculateRevenue(currentRevenue, 120, 4) * 12) - (collegeGradAvg * Math.pow(1.03, 6)))} difference.
+                            And they still have $80k in student debt.
+                        </p>
+                    </div>
+
                     <div class="highlight-box" style="margin-top: 24px;">
-                        <div class="value">${formatCurrency(yourYear1Yearly + calculateRevenue(currentRevenue, 24, 4) * 12 + yourYear3Yearly + 80000)}</div>
-                        <div class="subtitle">Your advantage over the "traditional path"</div>
+                        <div class="value">${(calculateRevenue(currentRevenue, 120, 4) * 12 / (collegeGradAvg * Math.pow(1.03, 6))).toFixed(1)}x</div>
+                        <div class="subtitle">You'll be making ${(calculateRevenue(currentRevenue, 120, 4) * 12 / (collegeGradAvg * Math.pow(1.03, 6))).toFixed(1)}x more than them in year 10</div>
                     </div>
                 </div>
             `;
