@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S&Me - Invest in Yourself</title>
-    <meta name="description" content="Your best investment isn't the S&P 500. It's you. Track your ROI, watch your equity grow, and build real wealth.">
+    <title>Growth Calculator - You Think You're Failing. You're Actually Winning.</title>
+    <meta name="description" content="That 4% monthly growth feels pathetic, but it's actually 60% per year. See why you're winning when you think you're losing.">
     <style>
         * {
             margin: 0;
@@ -502,39 +502,39 @@
     <div class="container">
         <!-- Onboarding -->
         <div id="onboarding" class="onboarding animated">
-            <div class="logo">S&Me</div>
-            <h1>Invest in the S&Me<br>Not Just the S&P</h1>
+            <div class="logo">Growth Calculator</div>
+            <h1>You Think You're Failing.<br>You're Actually Winning.</h1>
             <p class="tagline">
-                Your business isn't a side hustle. It's your highest-ROI investment.
-                Let's see what YOUR equity is worth.
+                That "pathetic" 4% monthly growth you're beating yourself up about?
+                It's actually incredible. Let me show you why.
             </p>
 
             <div class="input-wrapper">
-                <label>Current Monthly Revenue</label>
+                <label>How much are you making per month right now?</label>
                 <input type="number" id="startRevenue" class="input-large" placeholder="$0" min="0">
             </div>
 
-            <button class="btn-primary" onclick="startJourney()">Calculate My Worth</button>
+            <button class="btn-primary" onclick="startJourney()">Show Me the Truth</button>
         </div>
 
         <!-- Dashboard -->
         <div id="dashboard" class="dashboard">
             <div class="header">
-                <div class="logo-small">S&Me</div>
-                <a class="edit-link" onclick="resetJourney()">← Change Starting Value</a>
+                <div class="logo-small">Growth Calculator</div>
+                <a class="edit-link" onclick="resetJourney()">← Change My Numbers</a>
             </div>
 
             <div class="portfolio-value animated">
-                <div class="portfolio-label">Your Business (Monthly)</div>
+                <div class="portfolio-label">You're Making</div>
                 <div class="portfolio-amount" id="currentRevenue">$0</div>
                 <div class="portfolio-change" id="projectedChange">Loading...</div>
             </div>
 
             <div class="tabs">
-                <button class="tab active" onclick="switchTab('overview')">Overview</button>
-                <button class="tab" onclick="switchTab('projections')">Projections</button>
-                <button class="tab" onclick="switchTab('roi')">ROI Analysis</button>
-                <button class="tab" onclick="switchTab('milestones')">Milestones</button>
+                <button class="tab active" onclick="switchTab('overview')">The Truth</button>
+                <button class="tab" onclick="switchTab('projections')">Your Future</button>
+                <button class="tab" onclick="switchTab('comparison')">vs Getting a Job</button>
+                <button class="tab" onclick="switchTab('milestones')">Next Goals</button>
             </div>
 
             <div id="content"></div>
@@ -602,8 +602,8 @@
                     case 'projections':
                         showProjections();
                         break;
-                    case 'roi':
-                        showROIAnalysis();
+                    case 'comparison':
+                        showComparison();
                         break;
                     case 'milestones':
                         showMilestones();
@@ -632,98 +632,86 @@
         function showOverview() {
             const year1 = calculateRevenue(currentRevenue, 12, 4);
             const year3 = calculateRevenue(currentRevenue, 36, 4);
-            const sp500Year1 = currentRevenue * 12 * 1.10; // If you saved it and invested in S&P
-            const businessAdvantage = (year1 * 12) - sp500Year1;
+            const monthlyIncrease = currentRevenue * 0.04;
 
             document.getElementById('content').innerHTML = `
-                <div class="metric-grid animated">
-                    <div class="metric">
-                        <div class="metric-label">12-Month Projection</div>
-                        <div class="metric-value">${formatCurrency(year1)}</div>
-                        <div class="metric-subtext gain">+${formatCurrency(year1 - currentRevenue)}</div>
-                    </div>
-                    <div class="metric">
-                        <div class="metric-label">36-Month Projection</div>
-                        <div class="metric-value">${formatCurrency(year3)}</div>
-                        <div class="metric-subtext gain">${(year3 / currentRevenue).toFixed(1)}x your starting point</div>
-                    </div>
-                    <div class="metric">
-                        <div class="metric-label">Annual CAGR</div>
-                        <div class="metric-value">60.1%</div>
-                        <div class="metric-subtext">at 4% monthly growth</div>
-                    </div>
-                    <div class="metric">
-                        <div class="metric-label">vs S&P 500</div>
-                        <div class="metric-value gain">+${formatCurrency(businessAdvantage)}</div>
-                        <div class="metric-subtext">advantage in year 1</div>
-                    </div>
+                <div class="card animated" style="background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);">
+                    <h3 style="font-size: 24px; margin-bottom: 16px;">Here's the truth:</h3>
+                    <p style="color: #999; font-size: 18px; line-height: 1.8; margin-bottom: 24px;">
+                        If you're growing at just <strong style="color: #00d09c;">4% per month</strong>, it feels like nothing.
+                        Like you're barely moving. Like everyone else is crushing it and you're stuck.
+                    </p>
+                    <p style="color: #fff; font-size: 20px; line-height: 1.8;">
+                        But here's what's actually happening: <strong style="color: #00d09c;">You're growing at 60% per year.</strong>
+                        <br><br>
+                        That's not slow. That's exceptional. Most businesses don't grow like that. Most <em>investments</em> don't grow like that.
+                    </p>
                 </div>
 
                 <div class="highlight-box animated">
-                    <div class="title">YOUR ANNUAL REVENUE (Year 1)</div>
-                    <div class="value">${formatCurrency(year1 * 12)}</div>
-                    <div class="subtitle">That's ${formatCurrency((year1 * 12) / SP500_AVG_RETURN)}x better than 10% S&P returns</div>
+                    <div class="title">What "Just 4% Monthly" Actually Means</div>
+                    <div class="value">${formatCurrency(year1)}/month</div>
+                    <div class="subtitle">in 1 year • That's ${formatCurrency(year1 * 12)} per year</div>
                 </div>
 
                 <div class="card animated">
-                    <h3>Why Your Business Beats the Stock Market</h3>
-                    <div class="comparison-card">
-                        <div class="comparison-header">
-                            <div class="comparison-title">Your Business (4% monthly)</div>
-                            <div class="comparison-badge">60.1% Annual ROI</div>
-                        </div>
-                        <div class="comparison-value">${formatCurrency(year1 * 12)}</div>
-                        <div class="comparison-description">
-                            Starting from ${formatCurrency(currentRevenue)}/month, at just 4% monthly growth,
-                            you'll generate ${formatCurrency(year1 * 12)} in annual revenue in year 1.
-                        </div>
-                    </div>
-
-                    <div class="comparison-card" style="opacity: 0.6;">
-                        <div class="comparison-header">
-                            <div class="comparison-title">S&P 500 (10% annual)</div>
-                            <div class="comparison-badge" style="background: #666;">10% Annual ROI</div>
-                        </div>
-                        <div class="comparison-value" style="color: #999;">${formatCurrency(sp500Year1)}</div>
-                        <div class="comparison-description">
-                            If you saved ${formatCurrency(currentRevenue)}/month and invested it in the S&P 500,
-                            you'd have ${formatCurrency(sp500Year1)} after one year.
-                        </div>
-                    </div>
-
-                    <div class="highlight-box">
-                        <div class="value">${formatCurrency(businessAdvantage)}</div>
-                        <div class="subtitle">Your business advantage in Year 1</div>
+                    <h3>Let's Do the Math (It's Simple)</h3>
+                    <div style="background: #0d0d0d; padding: 24px; border-radius: 8px; margin-top: 16px;">
+                        <p style="color: #999; line-height: 1.8; margin-bottom: 16px;">
+                            You're making <strong style="color: #fff;">${formatCurrency(currentRevenue)}</strong> per month right now.
+                        </p>
+                        <p style="color: #999; line-height: 1.8; margin-bottom: 16px;">
+                            If you grow by 4% each month, you're adding <strong style="color: #00d09c;">${formatCurrency(monthlyIncrease)}</strong> next month.
+                        </p>
+                        <p style="color: #999; line-height: 1.8; margin-bottom: 16px;">
+                            Doesn't sound like much, right? That's why it feels slow.
+                        </p>
+                        <p style="color: #fff; font-size: 18px; line-height: 1.8; margin-top: 24px;">
+                            But in <strong style="color: #00d09c;">1 year</strong>, you'll be making <strong style="color: #00d09c;">${formatCurrency(year1)}</strong>/month.
+                            <br>
+                            In <strong style="color: #00d09c;">3 years</strong>, you'll be making <strong style="color: #00d09c;">${formatCurrency(year3)}</strong>/month.
+                        </p>
                     </div>
                 </div>
 
                 <div class="card animated">
-                    <h3>Your Position Right Now</h3>
-                    <p style="color: #999; margin-bottom: 24px;">${getStageMessage(currentRevenue)}</p>
-
+                    <h3>Your Journey</h3>
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
                         <div class="timeline-content">
-                            <h4>You Are Here: ${formatCurrency(currentRevenue)}/month</h4>
-                            <p>${getStageInsight(currentRevenue)}</p>
+                            <h4>Today: ${formatCurrency(currentRevenue)}/month</h4>
+                            <p style="color: #999;">${getStageInsight(currentRevenue)}</p>
                         </div>
                     </div>
 
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
                         <div class="timeline-content">
-                            <h4>12 Months: ${formatCurrency(year1)}/month</h4>
-                            <p>At 4% monthly growth. That's ${formatCurrency(year1 * 12)}/year in revenue.</p>
+                            <h4>1 Year: ${formatCurrency(year1)}/month</h4>
+                            <p style="color: #999;">If you keep growing at 4% monthly. That's ${formatCurrency(year1 * 12)} per year.</p>
                         </div>
                     </div>
 
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
                         <div class="timeline-content">
-                            <h4>36 Months: ${formatCurrency(year3)}/month</h4>
-                            <p>You'll have ${(year3 / currentRevenue).toFixed(1)}x'd your business. Annual revenue: ${formatCurrency(year3 * 12)}</p>
+                            <h4>3 Years: ${formatCurrency(year3)}/month</h4>
+                            <p style="color: #999;">That's ${(year3 / currentRevenue).toFixed(1)}x what you're making now. ${formatCurrency(year3 * 12)} per year.</p>
                         </div>
                     </div>
+                </div>
+
+                <div class="card animated">
+                    <h3>Why This Matters</h3>
+                    <p style="color: #999; line-height: 1.8; margin-bottom: 16px;">
+                        When you're growing at 4% monthly, it doesn't <em>feel</em> like winning. The numbers are small.
+                        The progress is slow. You look at other people and think they're crushing it while you're stuck.
+                    </p>
+                    <p style="color: #fff; line-height: 1.8; font-size: 18px;">
+                        But the truth? <strong style="color: #00d09c;">You're actually doing incredibly well.</strong>
+                        60% yearly growth is exceptional. Most businesses fail. Most people never make a dollar online.
+                        You're in the top tier — you just don't realize it yet.
+                    </p>
                 </div>
             `;
         }
@@ -731,11 +719,14 @@
         function showProjections() {
             document.getElementById('content').innerHTML = `
                 <div class="card animated">
-                    <h3>Interactive Growth Simulator</h3>
-                    <p style="color: #999; margin-bottom: 24px;">See what different growth rates mean for YOUR business</p>
+                    <h3>Play With Your Numbers</h3>
+                    <p style="color: #999; margin-bottom: 24px;">
+                        Slide this to see what happens if you grow faster (or slower) than 4% per month.
+                        Even small changes make a huge difference over time.
+                    </p>
 
                     <div class="slider-container">
-                        <label style="color: #999; margin-bottom: 16px; display: block;">Monthly Growth Rate</label>
+                        <label style="color: #999; margin-bottom: 16px; display: block;">How much are you growing each month?</label>
                         <input type="range" class="slider" id="growthSlider" min="1" max="20" value="4" step="0.5" oninput="updateProjections()">
                         <div class="slider-value" id="sliderValue">4%</div>
                     </div>
@@ -744,14 +735,15 @@
                 </div>
 
                 <div class="card animated">
-                    <h3>Month-by-Month Breakdown</h3>
+                    <h3>Month-by-Month: What This Actually Looks Like</h3>
+                    <p style="color: #999; margin-bottom: 16px;">This is what your business looks like each month if you grow at 4% consistently:</p>
                     <table>
                         <thead>
                             <tr>
                                 <th>Month</th>
-                                <th>Revenue</th>
-                                <th>Growth</th>
-                                <th>Annual Run Rate</th>
+                                <th>What You're Making</th>
+                                <th>You Added This Month</th>
+                                <th>If You Made This Every Month for a Year</th>
                             </tr>
                         </thead>
                         <tbody id="monthlyTable"></tbody>
@@ -772,26 +764,26 @@
             document.getElementById('projectionResults').innerHTML = `
                 <div class="metric-grid" style="margin-top: 24px;">
                     <div class="metric">
-                        <div class="metric-label">Year 1</div>
+                        <div class="metric-label">In 1 Year</div>
                         <div class="metric-value">${formatCurrency(m12)}</div>
-                        <div class="metric-subtext">${formatCurrency(m12 * 12)}/year</div>
+                        <div class="metric-subtext">per month</div>
                     </div>
                     <div class="metric">
-                        <div class="metric-label">Year 2</div>
+                        <div class="metric-label">In 2 Years</div>
                         <div class="metric-value">${formatCurrency(m24)}</div>
-                        <div class="metric-subtext">${formatCurrency(m24 * 12)}/year</div>
+                        <div class="metric-subtext">per month</div>
                     </div>
                     <div class="metric">
-                        <div class="metric-label">Year 3</div>
+                        <div class="metric-label">In 3 Years</div>
                         <div class="metric-value">${formatCurrency(m36)}</div>
-                        <div class="metric-subtext">${formatCurrency(m36 * 12)}/year</div>
+                        <div class="metric-subtext">per month</div>
                     </div>
                 </div>
 
                 <div class="highlight-box" style="margin-top: 24px;">
-                    <div class="title">3-YEAR TOTAL REVENUE</div>
+                    <div class="title">What You'll Make in 3 Years Total</div>
                     <div class="value">${formatCurrency((m12 + m24 + m36) * 12)}</div>
-                    <div class="subtitle">At ${rate}% monthly growth from ${formatCurrency(currentRevenue)}</div>
+                    <div class="subtitle">Growing at ${rate}% per month from ${formatCurrency(currentRevenue)}/month</div>
                 </div>
             `;
 
@@ -804,7 +796,7 @@
 
                 tableHTML += `
                     <tr>
-                        <td style="color: #999;">${month === 0 ? 'Start' : 'Month ' + month}</td>
+                        <td style="color: #999;">${month === 0 ? 'Today' : 'Month ' + month}</td>
                         <td style="font-weight: 700;">${formatCurrency(revenue)}</td>
                         <td style="color: #00d09c;">${month === 0 ? '-' : '+' + formatCurrency(growth)}</td>
                         <td style="color: #999;">${formatCurrency(annualRunRate)}</td>
@@ -814,153 +806,193 @@
             document.getElementById('monthlyTable').innerHTML = tableHTML;
         }
 
-        function showROIAnalysis() {
+        function showComparison() {
             const year1 = calculateRevenue(currentRevenue, 12, 4);
             const year3 = calculateRevenue(currentRevenue, 36, 4);
-            const totalRevenue3Years = (currentRevenue + year1 + calculateRevenue(currentRevenue, 24, 4) + year3) * 12;
-            const sp500_3years = currentRevenue * 12 * Math.pow(1.10, 3);
-            const advantage = totalRevenue3Years - sp500_3years;
+
+            // Comparison to regular jobs
+            const minWageHourly = 15; // Federal/state averages around this
+            const minWageMonthly = minWageHourly * 40 * 4.33; // 40 hrs/week * 4.33 weeks/month
+            const minWageYearly = minWageMonthly * 12;
+
+            const collegeGradAvg = 55000; // Average entry-level college grad salary
+            const collegeGradMonthly = collegeGradAvg / 12;
+
+            const yourYearly = currentRevenue * 12;
+            const yourYear1Yearly = year1 * 12;
+            const yourYear3Yearly = year3 * 12;
 
             document.getElementById('content').innerHTML = `
-                <div class="highlight-box animated">
-                    <div class="title">YOUR 3-YEAR ADVANTAGE</div>
-                    <div class="value">${formatCurrency(advantage)}</div>
-                    <div class="subtitle">More than if you invested in the S&P 500</div>
+                <div class="card animated" style="background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);">
+                    <h3 style="font-size: 24px; margin-bottom: 16px;">What if you got a "real job" instead?</h3>
+                    <p style="color: #999; font-size: 18px; line-height: 1.8;">
+                        Everyone keeps telling you to get a real job, go to college, be realistic.
+                        Let's compare what that actually means in dollars.
+                    </p>
                 </div>
 
                 <div class="card animated">
-                    <h3>Return on Investment Comparison</h3>
+                    <h3>Your Business vs Minimum Wage Job</h3>
 
                     <div class="comparison-card">
                         <div class="comparison-header">
-                            <div class="comparison-title">Your Business</div>
-                            <div class="comparison-badge">Best Investment</div>
+                            <div class="comparison-title">Your Business Today</div>
+                            <div class="comparison-badge">What You're Making</div>
                         </div>
-                        <table style="margin-top: 20px;">
+                        <div class="comparison-value">${formatCurrency(yourYearly)}</div>
+                        <div class="comparison-description">per year (${formatCurrency(currentRevenue)}/month)</div>
+                    </div>
+
+                    <div class="comparison-card" style="opacity: 0.6;">
+                        <div class="comparison-header">
+                            <div class="comparison-title">Minimum Wage Job</div>
+                            <div class="comparison-badge" style="background: #666;">$${minWageHourly}/hr</div>
+                        </div>
+                        <div class="comparison-value" style="color: #999;">${formatCurrency(minWageYearly)}</div>
+                        <div class="comparison-description">per year (40 hours/week)</div>
+                    </div>
+
+                    ${yourYearly > minWageYearly ? `
+                        <div style="background: #0d0d0d; padding: 24px; border-radius: 8px; margin-top: 16px;">
+                            <p style="color: #00d09c; font-size: 18px; font-weight: 700;">
+                                You're already making ${formatCurrency(yourYearly - minWageYearly)} MORE per year than minimum wage.
+                            </p>
+                            <p style="color: #999; margin-top: 12px; line-height: 1.6;">
+                                And you're not trading hours for dollars. You're building something that can grow.
+                            </p>
+                        </div>
+                    ` : `
+                        <div style="background: #0d0d0d; padding: 24px; border-radius: 8px; margin-top: 16px;">
+                            <p style="color: #999; line-height: 1.6;">
+                                You're not there yet, but at 4% monthly growth, you'll pass minimum wage income
+                                in ${Math.ceil(calculateMonths(currentRevenue, minWageMonthly, 4))} months.
+                            </p>
+                            <p style="color: #fff; margin-top: 12px; line-height: 1.6;">
+                                And when you do, you'll keep growing. A minimum wage job doesn't.
+                            </p>
+                        </div>
+                    `}
+                </div>
+
+                <div class="card animated">
+                    <h3>Your Business vs College Graduate Salary</h3>
+                    <p style="color: #999; margin-bottom: 20px;">
+                        Average entry-level salary for a college graduate is around ${formatCurrency(collegeGradAvg)}/year.
+                        That's ${formatCurrency(collegeGradMonthly)}/month.
+                    </p>
+
+                    <div class="metric-grid">
+                        <div class="metric">
+                            <div class="metric-label">You Today</div>
+                            <div class="metric-value">${formatCurrency(yourYearly)}</div>
+                            <div class="metric-subtext">per year</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-label">You in 1 Year</div>
+                            <div class="metric-value">${formatCurrency(yourYear1Yearly)}</div>
+                            <div class="metric-subtext">at 4% monthly</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-label">You in 3 Years</div>
+                            <div class="metric-value">${formatCurrency(yourYear3Yearly)}</div>
+                            <div class="metric-subtext">at 4% monthly</div>
+                        </div>
+                    </div>
+
+                    ${yourYear1Yearly > collegeGradAvg ? `
+                        <div style="background: #0d0d0d; padding: 24px; border-radius: 8px; margin-top: 24px;">
+                            <p style="color: #00d09c; font-size: 18px; font-weight: 700; margin-bottom: 12px;">
+                                In 1 year, you'll be making ${formatCurrency(yourYear1Yearly - collegeGradAvg)} MORE than the average college grad.
+                            </p>
+                            <p style="color: #999; line-height: 1.6;">
+                                No student debt. No 4 years of school. No asking for permission for time off.
+                                And you'll keep growing while they're stuck at the same salary.
+                            </p>
+                        </div>
+                    ` : `
+                        <div style="background: #0d0d0d; padding: 24px; border-radius: 8px; margin-top: 24px;">
+                            <p style="color: #fff; line-height: 1.6; margin-bottom: 12px;">
+                                At 4% monthly growth, you'll match a college grad salary (${formatCurrency(collegeGradMonthly)}/month)
+                                in about ${Math.ceil(calculateMonths(currentRevenue, collegeGradMonthly, 4))} months.
+                            </p>
+                            <p style="color: #999; line-height: 1.6;">
+                                And you'll keep growing. They'll spend 4 years in school, rack up debt, and start at the same place
+                                you'll be in ${(calculateMonths(currentRevenue, collegeGradMonthly, 4) / 12).toFixed(1)} years.
+                            </p>
+                        </div>
+                    `}
+                </div>
+
+                <div class="card animated">
+                    <h3>The 3-Year Picture</h3>
+                    <p style="color: #999; margin-bottom: 20px; line-height: 1.6;">
+                        Here's what three years of your life looks like on different paths:
+                    </p>
+
+                    <div class="comparison-card">
+                        <div class="comparison-title" style="margin-bottom: 12px;">Your Business (4% monthly growth)</div>
+                        <table style="width: 100%;">
                             <tr>
-                                <td style="color: #999;">Year 1 Revenue</td>
-                                <td style="text-align: right; font-weight: 700;">${formatCurrency(year1 * 12)}</td>
+                                <td style="color: #999; padding: 8px 0;">Year 1</td>
+                                <td style="text-align: right; font-weight: 700; padding: 8px 0;">${formatCurrency(yourYear1Yearly)}</td>
                             </tr>
                             <tr>
-                                <td style="color: #999;">Year 3 Revenue</td>
-                                <td style="text-align: right; font-weight: 700;">${formatCurrency(year3 * 12)}</td>
+                                <td style="color: #999; padding: 8px 0;">Year 2</td>
+                                <td style="text-align: right; font-weight: 700; padding: 8px 0;">${formatCurrency(calculateRevenue(currentRevenue, 24, 4) * 12)}</td>
                             </tr>
                             <tr>
-                                <td style="color: #999;">3-Year Total</td>
-                                <td style="text-align: right; font-weight: 700; color: #00d09c;">${formatCurrency(totalRevenue3Years)}</td>
+                                <td style="color: #999; padding: 8px 0;">Year 3</td>
+                                <td style="text-align: right; font-weight: 700; padding: 8px 0;">${formatCurrency(yourYear3Yearly)}</td>
+                            </tr>
+                            <tr style="border-top: 2px solid #2a2a2a;">
+                                <td style="color: #999; padding: 12px 0; font-weight: 700;">Total Earned</td>
+                                <td style="text-align: right; font-weight: 700; color: #00d09c; font-size: 20px; padding: 12px 0;">
+                                    ${formatCurrency(yourYear1Yearly + calculateRevenue(currentRevenue, 24, 4) * 12 + yourYear3Yearly)}
+                                </td>
                             </tr>
                         </table>
                     </div>
 
                     <div class="comparison-card" style="opacity: 0.6;">
-                        <div class="comparison-header">
-                            <div class="comparison-title">S&P 500 (10% annual)</div>
-                            <div class="comparison-badge" style="background: #666;">Traditional</div>
-                        </div>
-                        <table style="margin-top: 20px;">
+                        <div class="comparison-title" style="margin-bottom: 12px;">College Graduate Path</div>
+                        <table style="width: 100%;">
                             <tr>
-                                <td style="color: #999;">Starting Capital</td>
-                                <td style="text-align: right;">${formatCurrency(currentRevenue * 12)}</td>
+                                <td style="color: #999; padding: 8px 0;">Year 1</td>
+                                <td style="text-align: right; padding: 8px 0;">$0 (in school)</td>
                             </tr>
                             <tr>
-                                <td style="color: #999;">After 3 Years</td>
-                                <td style="text-align: right;">${formatCurrency(sp500_3years)}</td>
+                                <td style="color: #999; padding: 8px 0;">Year 2</td>
+                                <td style="text-align: right; padding: 8px 0;">$0 (in school)</td>
                             </tr>
                             <tr>
-                                <td style="color: #999;">Total Return</td>
-                                <td style="text-align: right; color: #999;">${formatCurrency(sp500_3years - currentRevenue * 12)}</td>
+                                <td style="color: #999; padding: 8px 0;">Year 3</td>
+                                <td style="text-align: right; padding: 8px 0;">$0 (in school)</td>
+                            </tr>
+                            <tr style="border-top: 2px solid #2a2a2a;">
+                                <td style="color: #999; padding: 12px 0; font-weight: 700;">Total Earned</td>
+                                <td style="text-align: right; color: #999; font-size: 20px; padding: 12px 0;">
+                                    -$80,000 (avg debt)
+                                </td>
                             </tr>
                         </table>
                     </div>
-                </div>
 
-                <div class="card animated">
-                    <h3>The Wealth Building Equation</h3>
-                    <p style="color: #999; margin-bottom: 24px; line-height: 1.6;">
-                        The S&P 500 averages 10% per year. Your business at 4% monthly growth = 60.1% per year.
-                        That's ${(60.1 / 10).toFixed(1)}x better. Here's what that means:
-                    </p>
-
-                    <div class="metric-grid">
-                        <div class="metric">
-                            <div class="metric-label">Your Business ROI</div>
-                            <div class="metric-value gain">60.1%</div>
-                            <div class="metric-subtext">Annual return</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-label">S&P 500 ROI</div>
-                            <div class="metric-value" style="color: #999;">10.0%</div>
-                            <div class="metric-subtext">Annual return</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-label">Your Advantage</div>
-                            <div class="metric-value gain">6.0x</div>
-                            <div class="metric-subtext">Better returns</div>
-                        </div>
+                    <div class="highlight-box" style="margin-top: 24px;">
+                        <div class="value">${formatCurrency(yourYear1Yearly + calculateRevenue(currentRevenue, 24, 4) * 12 + yourYear3Yearly + 80000)}</div>
+                        <div class="subtitle">Your advantage over the "traditional path"</div>
                     </div>
-
-                    <div style="background: #0d0d0d; padding: 24px; border-radius: 8px; margin-top: 24px;">
-                        <h4 style="margin-bottom: 16px;">What This Means:</h4>
-                        <p style="color: #999; line-height: 1.8;">
-                            If you're making ${formatCurrency(currentRevenue)}/month right now, your business is generating
-                            ${formatCurrency(currentRevenue * 12)}/year. At 4% monthly growth, in 3 years you'll have generated
-                            ${formatCurrency(totalRevenue3Years)} in total revenue. If you had invested that same
-                            ${formatCurrency(currentRevenue * 12)}/year in the S&P 500, you'd have ${formatCurrency(sp500_3years)}.
-                            <br><br>
-                            <strong style="color: #00d09c;">Your business generates ${formatCurrency(advantage)} MORE.</strong>
-                            <br><br>
-                            That's why investing in yourself beats investing in the stock market.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="card animated">
-                    <h3>Time to Financial Independence</h3>
-                    <p style="color: #999; margin-bottom: 24px;">
-                        Based on the 4% rule, here's when you could achieve financial independence:
-                    </p>
-
-                    ${calculateFITimeline(currentRevenue)}
                 </div>
             `;
         }
 
-        function calculateFITimeline(revenue) {
-            const targets = [
-                { amount: 3000, label: "Lean FIRE ($3k/mo = $900k invested)", rule4Percent: 900000 },
-                { amount: 5000, label: "Coast FIRE ($5k/mo = $1.5M invested)", rule4Percent: 1500000 },
-                { amount: 10000, label: "Full FIRE ($10k/mo = $3M invested)", rule4Percent: 3000000 },
-            ];
-
-            return targets.map(target => {
-                const months = calculateMonths(revenue, target.amount, 4);
-                const years = (months / 12).toFixed(1);
-
-                return `
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <h4>${target.label}</h4>
-                            <p style="color: #00d09c; font-size: 20px; font-weight: 700; margin: 8px 0;">
-                                ${months > 0 && months < 600 ? years + ' years' : 'Already there!'}
-                            </p>
-                            <p style="color: #999;">
-                                Once your business generates ${formatCurrency(target.amount)}/month consistently,
-                                you could sell it or save/invest to reach ${formatCurrency(target.rule4Percent)} and live off 4% rule.
-                            </p>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-        }
 
         function showMilestones() {
             const milestones = getMilestones(currentRevenue);
 
             document.getElementById('content').innerHTML = `
                 <div class="card animated">
-                    <h3>Your Next Milestones</h3>
-                    <p style="color: #999; margin-bottom: 24px;">${getStageMessage(currentRevenue)}</p>
+                    <h3>Your Next Goals</h3>
+                    <p style="color: #999; margin-bottom: 24px; line-height: 1.6;">${getStageMessage(currentRevenue)}</p>
 
                     ${milestones.map(m => {
                         const progress = (currentRevenue / m.target) * 100;
@@ -968,12 +1000,12 @@
                             <div style="margin-bottom: 32px;">
                                 <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
                                     <div>
-                                        <div style="font-size: 24px; font-weight: 700; margin-bottom: 4px;">${formatCurrency(m.target)}</div>
+                                        <div style="font-size: 24px; font-weight: 700; margin-bottom: 4px;">${formatCurrency(m.target)}/month</div>
                                         <div style="color: #999; font-size: 14px;">${m.context}</div>
                                     </div>
                                     <div style="text-align: right;">
-                                        <div style="color: #00d09c; font-size: 18px; font-weight: 700;">${m.months} months</div>
-                                        <div style="color: #999; font-size: 14px;">at 4% growth</div>
+                                        <div style="color: #00d09c; font-size: 18px; font-weight: 700;">${m.months} months away</div>
+                                        <div style="color: #999; font-size: 14px;">if you grow at 4%</div>
                                     </div>
                                 </div>
                                 <div class="progress-bar">
@@ -985,8 +1017,11 @@
                 </div>
 
                 <div class="card animated">
-                    <h3>Milestone Comparison</h3>
-                    <p style="color: #999; margin-bottom: 24px;">How different growth rates affect when you hit your next big milestone:</p>
+                    <h3>How Growth Rate Changes Everything</h3>
+                    <p style="color: #999; margin-bottom: 24px;">
+                        This shows how much faster you'll hit ${formatCurrency(milestones[0].target)}/month at different growth rates.
+                        Even 1-2% makes a huge difference.
+                    </p>
 
                     ${generateMilestoneComparison(currentRevenue)}
                 </div>
@@ -1035,20 +1070,20 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Growth Rate</th>
-                            <th>Time to ${formatCurrency(nextMilestone)}</th>
-                            <th>Annual ROI</th>
+                            <th>If You Grow This Much Each Month</th>
+                            <th>You'll Hit ${formatCurrency(nextMilestone)} in...</th>
+                            <th>That's This Much Per Year</th>
                         </tr>
                     </thead>
                     <tbody>
                         ${rates.map(rate => {
                             const months = Math.ceil(calculateMonths(revenue, nextMilestone, rate));
-                            const annualROI = ((Math.pow(1 + rate/100, 12) - 1) * 100).toFixed(1);
+                            const annualGrowth = ((Math.pow(1 + rate/100, 12) - 1) * 100).toFixed(0);
                             return `
                                 <tr>
-                                    <td style="font-weight: 700;">${rate}% monthly</td>
+                                    <td style="font-weight: 700;">${rate}% per month</td>
                                     <td style="color: #00d09c;">${months} months (${(months/12).toFixed(1)} years)</td>
-                                    <td style="color: #999;">${annualROI}% annual</td>
+                                    <td style="color: #999;">${annualGrowth}% per year</td>
                                 </tr>
                             `;
                         }).join('')}
@@ -1058,19 +1093,19 @@
         }
 
         function getStageMessage(revenue) {
-            if (revenue < 100) return "You're in the bootstrap phase. Every dollar counts right now.";
-            if (revenue < 1000) return "You've proven you can make money online. Now it's about consistency and growth.";
-            if (revenue < 5000) return "This is real money. You're building a real business.";
-            if (revenue < 20000) return "You have a real business. This is full-time income territory.";
-            return "You're running a serious business. This is about scale now.";
+            if (revenue < 100) return "You're just starting out. Every dollar you make right now is proof this can work.";
+            if (revenue < 1000) return "You've proven you can make money online. That's further than most people ever get.";
+            if (revenue < 5000) return "This is real money. You're actually doing this.";
+            if (revenue < 20000) return "You're making real income from this. This is what success looks like.";
+            return "You're running a real business. Most people never get here.";
         }
 
         function getStageInsight(revenue) {
-            if (revenue < 100) return "Most people never get here. You're already ahead of 95% of people who talk about starting a business.";
-            if (revenue < 1000) return `At ${formatCurrency(revenue)}/month, you're further than 90% of people who start. Most quit before they ever make a dollar.`;
-            if (revenue < 5000) return `${formatCurrency(revenue)}/month is more than most part-time jobs pay. And you're doing this online.`;
-            if (revenue < 20000) return `${formatCurrency(revenue)}/month is life-changing money. If you maintain just 4% monthly growth, you'll 4x this in 3 years.`;
-            return `${formatCurrency(revenue)}/month puts you in elite territory. At 4% monthly growth, you're adding ${formatCurrency(revenue * 0.04)} in new revenue every single month.`;
+            if (revenue < 100) return "Most people never make their first dollar online. You're already ahead of everyone who just talks about it.";
+            if (revenue < 1000) return `You're making ${formatCurrency(revenue)} per month. Most people quit before they get here. You didn't. Keep going.`;
+            if (revenue < 5000) return `${formatCurrency(revenue)} per month is more than most part-time jobs. And you built this yourself.`;
+            if (revenue < 20000) return `${formatCurrency(revenue)} per month is real income. Most people work 40 hours a week for less than this. You're winning.`;
+            return `You're making ${formatCurrency(revenue)} per month. At 4% growth, you're adding ${formatCurrency(revenue * 0.04)} every single month. That's incredible.`;
         }
 
         // Auto-load overview on start
