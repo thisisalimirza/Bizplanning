@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Compound Growth Calculator - Stop Giving Up on Winning Businesses</title>
-    <meta name="description" content="Understand why your 4% monthly growth isn't slow - it's a 60% annual CAGR. Stop giving up on your business because you don't understand compound growth.">
+    <title>Your Growth Journey - Personalized Compound Growth Calculator</title>
+    <meta name="description" content="See what YOUR business could become. Start from where YOU are right now.">
     <style>
         * {
             margin: 0;
@@ -25,445 +25,350 @@
             margin: 0 auto;
         }
 
-        .header {
+        .onboarding {
+            background: white;
+            border-radius: 16px;
+            padding: 48px 32px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
             text-align: center;
-            color: white;
-            margin-bottom: 40px;
             animation: fadeIn 0.6s ease-in;
         }
 
-        .header h1 {
-            font-size: clamp(28px, 5vw, 48px);
+        .onboarding h1 {
+            font-size: clamp(28px, 5vw, 42px);
             margin-bottom: 16px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            color: #1a1a2e;
         }
 
-        .header p {
-            font-size: clamp(16px, 3vw, 20px);
-            opacity: 0.95;
-        }
-
-        .tabs {
-            display: flex;
-            background: white;
-            border-radius: 12px 12px 0 0;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .tab {
-            flex: 1;
-            padding: 16px;
-            text-align: center;
-            background: white;
-            border: none;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 600;
+        .onboarding p {
+            font-size: 18px;
             color: #6b7280;
-            border-bottom: 3px solid transparent;
-            transition: all 0.3s ease;
+            margin-bottom: 32px;
+            line-height: 1.6;
         }
 
-        .tab:hover {
-            background: #f9fafb;
-        }
-
-        .tab.active {
-            color: #3b82f6;
-            border-bottom-color: #3b82f6;
-            background: #eff6ff;
-        }
-
-        .content {
-            background: white;
-            border-radius: 0 0 12px 12px;
-            padding: 32px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            animation: slideUp 0.4s ease-out;
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-            animation: fadeIn 0.3s ease-in;
-        }
-
-        .input-group {
-            margin-bottom: 24px;
-        }
-
-        .input-group label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #374151;
-        }
-
-        .input-group input {
+        .input-large {
             width: 100%;
-            padding: 14px;
-            border: 2px solid #e5e7eb;
-            border-radius: 8px;
-            font-size: 16px;
+            max-width: 400px;
+            padding: 20px;
+            font-size: 24px;
+            border: 3px solid #e5e7eb;
+            border-radius: 12px;
+            margin-bottom: 16px;
             transition: border-color 0.3s ease;
         }
 
-        .input-group input:focus {
+        .input-large:focus {
             outline: none;
             border-color: #3b82f6;
         }
 
-        .button-group {
-            display: flex;
-            gap: 8px;
+        .btn-primary {
+            background: #3b82f6;
+            color: white;
+            padding: 18px 48px;
+            font-size: 18px;
+            font-weight: 600;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+        }
+
+        .dashboard {
+            display: none;
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        .dashboard.active {
+            display: block;
+        }
+
+        .header {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: clamp(24px, 4vw, 36px);
+            margin-bottom: 8px;
+        }
+
+        .header .current {
+            font-size: 48px;
+            font-weight: bold;
+            color: #3b82f6;
+            margin: 16px 0;
+        }
+
+        .edit-btn {
+            display: inline-block;
+            color: #3b82f6;
+            font-size: 14px;
+            text-decoration: none;
+            margin-top: 8px;
+            cursor: pointer;
+        }
+
+        .section {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .section h2 {
+            font-size: 28px;
+            margin-bottom: 24px;
+            color: #1a1a2e;
+        }
+
+        .section h3 {
+            font-size: 20px;
+            margin: 24px 0 16px 0;
+            color: #374151;
+        }
+
+        .milestone-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
             margin-bottom: 24px;
         }
 
-        .button-group button {
-            flex: 1;
-            padding: 12px;
-            border: 2px solid #e5e7eb;
-            background: white;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .button-group button:hover {
-            border-color: #3b82f6;
-        }
-
-        .button-group button.active {
-            background: #3b82f6;
+        .milestone {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            border-color: #3b82f6;
-        }
-
-        .card {
             padding: 24px;
             border-radius: 12px;
+            text-align: center;
+        }
+
+        .milestone .target {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .milestone .time {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 4px;
+        }
+
+        .milestone .context {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-top: 8px;
+            line-height: 1.4;
+        }
+
+        .growth-option {
+            background: #f9fafb;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 20px;
             margin-bottom: 16px;
         }
 
-        .card-blue {
-            background: #3b82f6;
-            color: white;
-            text-align: center;
+        .growth-option h4 {
+            color: #1a1a2e;
+            margin-bottom: 12px;
+            font-size: 18px;
         }
 
-        .card-blue .label {
-            font-size: 14px;
-            opacity: 0.9;
+        .growth-option .result {
+            font-size: 24px;
+            font-weight: bold;
+            color: #3b82f6;
             margin-bottom: 8px;
         }
 
-        .card-blue .value {
-            font-size: 48px;
-            font-weight: bold;
-            margin-bottom: 8px;
+        .growth-option .timeline {
+            color: #6b7280;
+            margin-bottom: 12px;
         }
 
-        .card-blue .subtext {
-            font-size: 14px;
-            opacity: 0.9;
-        }
-
-        .card-green {
-            background: #10b981;
-            color: white;
-            text-align: center;
-        }
-
-        .card-green .label {
-            font-size: 14px;
-            opacity: 0.9;
-        }
-
-        .card-green .value {
-            font-size: 32px;
-            font-weight: bold;
-            margin: 8px 0;
-        }
-
-        .card-yellow {
+        .insight-box {
             background: #fef3c7;
             border: 2px solid #fbbf24;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
         }
 
-        .card-yellow .title {
+        .insight-box .title {
             font-size: 18px;
             font-weight: bold;
             color: #92400e;
             margin-bottom: 8px;
         }
 
-        .card-yellow .text {
+        .insight-box .text {
             color: #78350f;
             line-height: 1.6;
         }
 
-        .summary-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-            margin-bottom: 16px;
-        }
-
-        .summary-card {
-            background: #f9fafb;
-            padding: 20px;
-            border-radius: 12px;
-            border: 1px solid #e5e7eb;
-        }
-
-        .summary-card .label {
-            font-size: 12px;
-            color: #6b7280;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-
-        .summary-card .value {
-            font-size: 24px;
-            font-weight: bold;
-            color: #1a1a2e;
-        }
-
-        .table {
+        .comparison-table {
             width: 100%;
-            margin-top: 24px;
+            border-collapse: collapse;
+            margin: 24px 0;
         }
 
-        .table-header {
-            display: grid;
-            grid-template-columns: 100px 1fr 120px;
-            padding: 12px;
+        .comparison-table th {
             background: #f9fafb;
-            font-weight: 700;
-            font-size: 12px;
-            color: #6b7280;
-            text-transform: uppercase;
-            border-radius: 8px 8px 0 0;
-        }
-
-        .table-row {
-            display: grid;
-            grid-template-columns: 100px 1fr 120px;
             padding: 12px;
-            border-bottom: 1px solid #f3f4f6;
-            align-items: center;
+            text-align: left;
+            font-weight: 600;
+            color: #6b7280;
+            font-size: 12px;
+            text-transform: uppercase;
         }
 
-        .table-row:last-child {
-            border-bottom: none;
+        .comparison-table td {
+            padding: 16px 12px;
+            border-bottom: 1px solid #e5e7eb;
         }
 
-        .month-label {
+        .comparison-table .month {
             font-weight: 600;
             color: #374151;
         }
 
-        .month-value {
+        .comparison-table .revenue {
             font-weight: bold;
-            text-align: right;
+            color: #1a1a2e;
         }
 
-        .month-growth {
+        .comparison-table .change {
             color: #10b981;
-            text-align: right;
             font-size: 14px;
         }
 
-        .comparison-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-
-        .comparison-card {
-            border: 2px solid #e5e7eb;
-            border-radius: 12px;
-            overflow: hidden;
-        }
-
-        .comparison-header {
-            background: #f9fafb;
-            padding: 20px;
+        .zero-state {
             text-align: center;
+            padding: 40px 20px;
         }
 
-        .comparison-rate {
-            font-size: 36px;
-            font-weight: bold;
-            color: #3b82f6;
-        }
-
-        .comparison-body {
-            padding: 20px;
-        }
-
-        .comparison-metric {
+        .zero-state h2 {
+            font-size: 32px;
             margin-bottom: 16px;
         }
 
-        .comparison-metric-label {
-            font-size: 12px;
-            color: #6b7280;
-            margin-bottom: 4px;
-        }
-
-        .comparison-metric-value {
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        .insight-box {
-            background: #eff6ff;
-            border: 2px solid #3b82f6;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 24px;
-        }
-
-        .insight-box .title {
+        .zero-state p {
             font-size: 18px;
-            font-weight: bold;
-            color: #1e40af;
-            margin-bottom: 8px;
-        }
-
-        .insight-box .text {
-            color: #1e3a8a;
+            color: #6b7280;
+            margin-bottom: 32px;
             line-height: 1.6;
         }
 
-        .hero-insight {
-            background: #1e293b;
+        .path-card {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 16px;
+            text-align: left;
+            transition: all 0.3s ease;
+        }
+
+        .path-card:hover {
+            border-color: #3b82f6;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+        }
+
+        .path-card h4 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: #1a1a2e;
+        }
+
+        .path-card .description {
+            color: #6b7280;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
+        .path-card .examples {
+            background: #f9fafb;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #374151;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
             color: white;
             padding: 32px;
-            border-radius: 12px;
-            margin-bottom: 24px;
-        }
-
-        .hero-insight h2 {
-            font-size: 32px;
-            margin-bottom: 8px;
-        }
-
-        .hero-insight .subtitle {
-            font-size: 18px;
-            color: #94a3b8;
-            margin-bottom: 20px;
-        }
-
-        .hero-stats {
-            display: flex;
-            justify-content: space-around;
+            border-radius: 16px;
             margin: 24px 0;
-        }
-
-        .hero-stat {
             text-align: center;
         }
 
-        .hero-stat-label {
-            font-size: 12px;
-            color: #94a3b8;
-            margin-bottom: 4px;
-        }
-
-        .hero-stat-value {
-            font-size: 24px;
+        .highlight .big {
+            font-size: 48px;
             font-weight: bold;
-            color: #10b981;
+            margin: 16px 0;
         }
 
-        .insight-card {
-            background: white;
-            border: 1px solid #e5e7eb;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 16px;
+        .slider-container {
+            margin: 32px 0;
         }
 
-        .insight-card.highlight {
-            background: #fef3c7;
-            border: 2px solid #fbbf24;
+        .slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: #e5e7eb;
+            outline: none;
+            -webkit-appearance: none;
         }
 
-        .insight-card h3 {
-            margin-bottom: 8px;
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #3b82f6;
+            cursor: pointer;
         }
 
-        .benchmark-card {
-            background: white;
-            border: 1px solid #e5e7eb;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 12px;
+        .slider::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #3b82f6;
+            cursor: pointer;
+            border: none;
         }
 
-        .benchmark-card h4 {
-            margin-bottom: 4px;
-        }
-
-        .benchmark-card .rate {
-            font-size: 20px;
-            font-weight: bold;
-            color: #3b82f6;
-            margin-bottom: 4px;
-        }
-
-        .benchmark-card .description {
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
             font-size: 14px;
             color: #6b7280;
         }
 
-        .goal-result {
-            background: #8b5cf6;
-            color: white;
-            padding: 32px;
-            border-radius: 12px;
+        .slider-value {
             text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .goal-result .value {
-            font-size: 56px;
+            font-size: 32px;
             font-weight: bold;
-            margin: 12px 0;
-        }
-
-        .assessment {
-            background: #f0fdf4;
-            border: 2px solid #10b981;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-
-        .assessment.warning {
-            background: #fef3c7;
-            border-color: #f59e0b;
-        }
-
-        .assessment.danger {
-            background: #fef2f2;
-            border-color: #ef4444;
-        }
-
-        .footer {
-            text-align: center;
-            color: white;
-            margin-top: 40px;
-            padding: 20px;
-            opacity: 0.9;
+            color: #3b82f6;
+            margin: 16px 0;
         }
 
         @keyframes fadeIn {
@@ -471,208 +376,46 @@
             to { opacity: 1; }
         }
 
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         @media (max-width: 640px) {
-            .content {
-                padding: 20px;
+            .onboarding {
+                padding: 32px 20px;
             }
-
-            .tab {
-                font-size: 12px;
-                padding: 12px 8px;
-            }
-
-            .table-header, .table-row {
-                grid-template-columns: 80px 1fr 100px;
-                font-size: 12px;
+            .header, .section {
+                padding: 24px 20px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1>💰 Compound Growth Calculator</h1>
-            <p>Stop giving up on your business because you think 4% monthly growth is "too slow"</p>
+        <!-- Onboarding Screen -->
+        <div id="onboarding" class="onboarding">
+            <h1>Your Growth Journey Starts Here</h1>
+            <p>Let's see what YOUR business could become.<br>Start by telling me where you are right now.</p>
+
+            <div style="margin: 32px 0;">
+                <label style="display: block; margin-bottom: 12px; font-size: 18px; font-weight: 600;">What's your current monthly revenue?</label>
+                <input type="number" id="startRevenue" class="input-large" placeholder="$0" min="0">
+                <div style="font-size: 14px; color: #6b7280; margin-top: 8px;">Enter $0 if you haven't made your first sale yet</div>
+            </div>
+
+            <button class="btn-primary" onclick="startJourney()">Show Me My Future</button>
         </div>
 
-        <div class="tabs">
-            <button class="tab active" onclick="switchTab('calculator')">Calculator</button>
-            <button class="tab" onclick="switchTab('comparison')">Compare</button>
-            <button class="tab" onclick="switchTab('goals')">Goals</button>
-            <button class="tab" onclick="switchTab('insights')">Insights</button>
-        </div>
-
-        <div class="content">
-            <!-- Calculator Tab -->
-            <div id="calculator" class="tab-content active">
-                <h2 style="margin-bottom: 24px;">Growth Calculator</h2>
-
-                <div class="input-group">
-                    <label>Current Monthly Revenue ($)</label>
-                    <input type="number" id="initialRevenue" value="10000" oninput="calculate()">
-                </div>
-
-                <div class="input-group">
-                    <label>Monthly Growth Rate (%)</label>
-                    <input type="number" id="monthlyGrowth" value="4" step="0.1" oninput="calculate()">
-                </div>
-
-                <div class="input-group">
-                    <label>Time Horizon</label>
-                    <div class="button-group">
-                        <button onclick="setTimeHorizon(6)">6mo</button>
-                        <button class="active" onclick="setTimeHorizon(12)">12mo</button>
-                        <button onclick="setTimeHorizon(24)">24mo</button>
-                        <button onclick="setTimeHorizon(36)">36mo</button>
-                    </div>
-                </div>
-
-                <div id="results"></div>
+        <!-- Dashboard -->
+        <div id="dashboard" class="dashboard">
+            <div class="header">
+                <div style="font-size: 14px; color: #6b7280; text-transform: uppercase; font-weight: 600; margin-bottom: 8px;">You're Currently At</div>
+                <div class="current" id="currentRevenue">$0</div>
+                <a class="edit-btn" onclick="resetJourney()">← Start Over</a>
             </div>
 
-            <!-- Comparison Tab -->
-            <div id="comparison" class="tab-content">
-                <h2 style="margin-bottom: 24px;">Growth Rate Comparison</h2>
-                <p style="margin-bottom: 24px; color: #6b7280;">See how different growth rates compound over 12 months</p>
-                <div id="comparisonResults"></div>
-            </div>
-
-            <!-- Goals Tab -->
-            <div id="goals" class="tab-content">
-                <h2 style="margin-bottom: 24px;">Goal Planner</h2>
-                <p style="margin-bottom: 24px; color: #6b7280;">What growth rate do you need to hit your target?</p>
-
-                <div class="input-group">
-                    <label>Current Monthly Revenue ($)</label>
-                    <input type="number" id="goalCurrentRevenue" value="10000" oninput="calculateGoal()">
-                </div>
-
-                <div class="input-group">
-                    <label>Goal Monthly Revenue ($)</label>
-                    <input type="number" id="goalTargetRevenue" value="50000" oninput="calculateGoal()">
-                </div>
-
-                <div class="input-group">
-                    <label>Timeframe</label>
-                    <div class="button-group">
-                        <button onclick="setGoalTimeframe(6)">6mo</button>
-                        <button class="active" onclick="setGoalTimeframe(12)">12mo</button>
-                        <button onclick="setGoalTimeframe(24)">24mo</button>
-                        <button onclick="setGoalTimeframe(36)">36mo</button>
-                    </div>
-                </div>
-
-                <div id="goalResults"></div>
-            </div>
-
-            <!-- Insights Tab -->
-            <div id="insights" class="tab-content">
-                <h2 style="margin-bottom: 24px;">Why Small Growth Matters</h2>
-
-                <div class="hero-insight">
-                    <h2>4% Monthly Growth Isn't Small</h2>
-                    <p class="subtitle">It's a 60% annual growth rate</p>
-                    <p style="margin-bottom: 20px; color: #cbd5e1;">If you started with $10,000/month in revenue and maintained just 4% monthly growth:</p>
-
-                    <div class="hero-stats">
-                        <div class="hero-stat">
-                            <div class="hero-stat-label">Year 1</div>
-                            <div class="hero-stat-value">$16,010</div>
-                        </div>
-                        <div class="hero-stat">
-                            <div class="hero-stat-label">Year 2</div>
-                            <div class="hero-stat-value">$25,640</div>
-                        </div>
-                        <div class="hero-stat">
-                            <div class="hero-stat-label">Year 3</div>
-                            <div class="hero-stat-value">$41,040</div>
-                        </div>
-                    </div>
-
-                    <p style="font-style: italic; text-align: center; color: #cbd5e1;">In 3 years, you'd more than 4x your revenue. That's the power of consistency.</p>
-                </div>
-
-                <div class="insight-card highlight">
-                    <h3>4% Monthly = 60% Yearly</h3>
-                    <p>That "small" 4% monthly growth compounds to 60% annual growth. Most traditional businesses would dream of 20% annual growth.</p>
-                </div>
-
-                <div class="insight-card">
-                    <h3>Consistency Beats Explosiveness</h3>
-                    <p>Steady 4% monthly growth beats sporadic 20% jumps. Compound growth rewards consistency, not volatility.</p>
-                </div>
-
-                <div class="insight-card">
-                    <h3>Year 2 Is Where Magic Happens</h3>
-                    <p>In year two, you're compounding on a much larger base. That same 4% monthly on $50k is $2k/month in new revenue vs $400 on $10k.</p>
-                </div>
-
-                <div class="insight-card highlight">
-                    <h3>Don't Compare Your Chapter 1 to Their Chapter 20</h3>
-                    <p>Every successful business started small. Your 4% monthly growth is your Chapter 1. Keep going.</p>
-                </div>
-
-                <h3 style="margin: 32px 0 16px 0; font-size: 24px;">Real-World Benchmarks</h3>
-
-                <div class="benchmark-card">
-                    <h4>SaaS Businesses</h4>
-                    <div class="rate">3-7% monthly growth</div>
-                    <p class="description">Healthy, sustainable growth for software businesses</p>
-                </div>
-
-                <div class="benchmark-card">
-                    <h4>E-commerce</h4>
-                    <div class="rate">5-10% monthly growth</div>
-                    <p class="description">Common during scaling phase with paid acquisition</p>
-                </div>
-
-                <div class="benchmark-card">
-                    <h4>Content/Media</h4>
-                    <div class="rate">8-15% monthly growth</div>
-                    <p class="description">Higher rates possible during viral growth phases</p>
-                </div>
-
-                <div class="benchmark-card">
-                    <h4>Traditional Business</h4>
-                    <div class="rate">1-2% monthly growth</div>
-                    <p class="description">Even this compounds to 15-25% annually - excellent for offline</p>
-                </div>
-
-                <div class="hero-insight" style="margin-top: 32px;">
-                    <h2 style="font-size: 28px; text-align: center; margin-bottom: 20px;">Don't Give Up</h2>
-                    <p style="margin-bottom: 16px; color: #cbd5e1; line-height: 1.6;">
-                        If you're growing at 3-5% per month, you're outperforming 90% of businesses.
-                        The entrepreneurs who win aren't the ones who grow the fastest initially -
-                        they're the ones who keep growing consistently while others quit.
-                    </p>
-                    <p style="color: #cbd5e1; line-height: 1.6;">
-                        Your 4% monthly growth might feel slow today, but in 2-3 years,
-                        you'll look back amazed at how far you've come. Trust the compound.
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="footer">
-            <p>Built for entrepreneurs who need to understand that their "slow" growth is actually exceptional.</p>
-            <p style="margin-top: 8px; font-size: 14px;">Trust the compound. Stay consistent. Don't give up.</p>
+            <div id="content"></div>
         </div>
     </div>
 
     <script>
-        let timeHorizon = 12;
-        let goalTimeframe = 12;
+        let currentRevenue = 0;
 
         function formatCurrency(value) {
             return new Intl.NumberFormat('en-US', {
@@ -683,264 +426,474 @@
             }).format(value);
         }
 
-        function formatNumber(value, decimals = 2) {
-            return new Intl.NumberFormat('en-US', {
-                minimumFractionDigits: decimals,
-                maximumFractionDigits: decimals,
-            }).format(value);
+        function calculateMonths(start, end, growthRate) {
+            if (start >= end || growthRate <= 0) return 0;
+            return Math.log(end / start) / Math.log(1 + growthRate / 100);
         }
 
-        function calculateProjections(initial, growthRate, months) {
-            const monthlyMultiplier = 1 + growthRate / 100;
-            const monthlyData = [];
-            let currentRevenue = initial;
-
-            for (let month = 0; month <= months; month++) {
-                monthlyData.push({
-                    month,
-                    revenue: currentRevenue,
-                });
-                if (month < months) {
-                    currentRevenue = currentRevenue * monthlyMultiplier;
-                }
-            }
-
-            const finalRevenue = monthlyData[months].revenue;
-            const years = months / 12;
-            const cagr = ((Math.pow(finalRevenue / initial, 1 / years) - 1) * 100);
-            const totalGrowth = ((finalRevenue - initial) / initial) * 100;
-
-            return { monthlyData, cagr, totalGrowth, finalRevenue };
+        function calculateRevenue(start, months, growthRate) {
+            return start * Math.pow(1 + growthRate / 100, months);
         }
 
-        function switchTab(tabName) {
-            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
-            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+        function startJourney() {
+            currentRevenue = parseFloat(document.getElementById('startRevenue').value) || 0;
+            document.getElementById('onboarding').style.display = 'none';
+            document.getElementById('dashboard').classList.add('active');
+            document.getElementById('currentRevenue').textContent = formatCurrency(currentRevenue);
 
-            event.target.classList.add('active');
-            document.getElementById(tabName).classList.add('active');
-
-            if (tabName === 'comparison') {
-                calculateComparison();
-            } else if (tabName === 'goals') {
-                calculateGoal();
-            }
-        }
-
-        function setTimeHorizon(months) {
-            timeHorizon = months;
-            event.target.parentElement.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            calculate();
-        }
-
-        function setGoalTimeframe(months) {
-            goalTimeframe = months;
-            event.target.parentElement.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            calculateGoal();
-        }
-
-        function calculate() {
-            const initial = parseFloat(document.getElementById('initialRevenue').value) || 0;
-            const growthRate = parseFloat(document.getElementById('monthlyGrowth').value) || 0;
-
-            if (initial <= 0) return;
-
-            const { monthlyData, cagr, totalGrowth, finalRevenue } = calculateProjections(initial, growthRate, timeHorizon);
-
-            let html = `
-                <div class="card card-blue">
-                    <div class="label">Annual CAGR</div>
-                    <div class="value">${cagr.toFixed(1)}%</div>
-                    <div class="subtext">${growthRate}% monthly = ${cagr.toFixed(1)}% annually</div>
-                </div>
-
-                <div class="summary-cards">
-                    <div class="summary-card">
-                        <div class="label">Starting</div>
-                        <div class="value">${formatCurrency(initial)}</div>
-                    </div>
-                    <div class="summary-card">
-                        <div class="label">After ${timeHorizon} months</div>
-                        <div class="value">${formatCurrency(finalRevenue)}</div>
-                    </div>
-                </div>
-
-                <div class="card card-green">
-                    <div class="label">Total Revenue Increase</div>
-                    <div class="value">+${formatCurrency(finalRevenue - initial)}</div>
-                    <div class="subtext">${formatNumber(totalGrowth)}% growth</div>
-                </div>
-            `;
-
-            if (growthRate >= 3 && growthRate <= 5) {
-                html += `
-                    <div class="card card-yellow">
-                        <div class="title">🚀 You're On Track!</div>
-                        <div class="text">
-                            ${growthRate}% monthly growth is excellent for a sustainable business.
-                            Many entrepreneurs quit at this rate thinking it's "too slow."
-                            They don't realize they're sitting on a rocket ship. Keep going!
-                        </div>
-                    </div>
-                `;
-            }
-
-            html += `
-                <div class="table">
-                    <div class="table-header">
-                        <div>Month</div>
-                        <div style="text-align: right;">Revenue</div>
-                        <div style="text-align: right;">Growth</div>
-                    </div>
-            `;
-
-            monthlyData.forEach((data, index) => {
-                const growth = index > 0 ? data.revenue - monthlyData[index - 1].revenue : 0;
-                html += `
-                    <div class="table-row">
-                        <div class="month-label">${data.month === 0 ? 'Start' : 'Mo ' + data.month}</div>
-                        <div class="month-value">${formatCurrency(data.revenue)}</div>
-                        <div class="month-growth">${index > 0 ? '+' + formatCurrency(growth) : '-'}</div>
-                    </div>
-                `;
-            });
-
-            html += `</div>`;
-
-            document.getElementById('results').innerHTML = html;
-        }
-
-        function calculateComparison() {
-            const initial = parseFloat(document.getElementById('initialRevenue').value) || 10000;
-            const rates = [2, 4, 6, 8];
-
-            let html = '<div class="comparison-grid">';
-
-            rates.forEach(rate => {
-                const { finalRevenue, cagr } = calculateProjections(initial, rate, 12);
-
-                html += `
-                    <div class="comparison-card">
-                        <div class="comparison-header">
-                            <div class="comparison-rate">${rate}%</div>
-                            <div style="color: #6b7280; font-weight: 600;">monthly</div>
-                        </div>
-                        <div class="comparison-body">
-                            <div class="comparison-metric">
-                                <div class="comparison-metric-label">After 12 Months</div>
-                                <div class="comparison-metric-value">${formatCurrency(finalRevenue)}</div>
-                            </div>
-                            <div class="comparison-metric">
-                                <div class="comparison-metric-label">Annual CAGR</div>
-                                <div class="comparison-metric-value" style="color: #3b82f6;">${cagr.toFixed(1)}%</div>
-                            </div>
-                            <div class="comparison-metric">
-                                <div class="comparison-metric-label">Total Gain</div>
-                                <div class="comparison-metric-value" style="color: #10b981;">+${formatCurrency(finalRevenue - initial)}</div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            });
-
-            html += '</div>';
-
-            const comp4 = calculateProjections(initial, 4, 12);
-            const comp6 = calculateProjections(initial, 6, 12);
-
-            html += `
-                <div class="insight-box">
-                    <div class="title">💡 Key Insight</div>
-                    <div class="text">
-                        Going from 4% to 6% monthly growth doesn't just add 50% more results -
-                        it nearly doubles your outcome! From ${formatCurrency(comp4.finalRevenue)} to ${formatCurrency(comp6.finalRevenue)}
-                        over 12 months. Small improvements in growth rate = massive differences in results.
-                    </div>
-                </div>
-            `;
-
-            document.getElementById('comparisonResults').innerHTML = html;
-        }
-
-        function calculateGoal() {
-            const current = parseFloat(document.getElementById('goalCurrentRevenue').value) || 0;
-            const target = parseFloat(document.getElementById('goalTargetRevenue').value) || 0;
-
-            if (current <= 0 || target <= current) {
-                document.getElementById('goalResults').innerHTML = `
-                    <div class="assessment danger">
-                        <div style="font-size: 18px; font-weight: bold; color: #991b1b; margin-bottom: 8px;">Invalid Input</div>
-                        <div style="color: #7f1d1d;">Your goal should be higher than your current revenue</div>
-                    </div>
-                `;
-                return;
-            }
-
-            const monthlyMultiplier = Math.pow(target / current, 1 / goalTimeframe);
-            const requiredRate = (monthlyMultiplier - 1) * 100;
-            const monthlyIncrease = current * requiredRate / 100;
-
-            let html = `
-                <div class="goal-result">
-                    <div style="font-size: 16px; opacity: 0.9;">Required Monthly Growth</div>
-                    <div class="value">${requiredRate.toFixed(2)}%</div>
-                    <div style="opacity: 0.9;">per month for ${goalTimeframe} months</div>
-                </div>
-
-                <div class="summary-cards">
-                    <div class="summary-card">
-                        <div class="label">Starting</div>
-                        <div class="value">${formatCurrency(current)}</div>
-                    </div>
-                    <div class="summary-card">
-                        <div class="label">Target</div>
-                        <div class="value">${formatCurrency(target)}</div>
-                    </div>
-                </div>
-
-                <div class="card" style="background: #fef3c7; border: 2px solid #f59e0b;">
-                    <div style="font-weight: bold; margin-bottom: 8px; color: #92400e;">You need to grow by:</div>
-                    <div style="font-size: 24px; font-weight: bold; color: #92400e;">${formatCurrency(monthlyIncrease)}/month</div>
-                </div>
-            `;
-
-            if (requiredRate < 2) {
-                html += `
-                    <div class="assessment">
-                        <div style="font-size: 18px; font-weight: bold; color: #065f46; margin-bottom: 8px;">✅ Very Achievable</div>
-                        <div style="color: #047857;">This growth rate is modest and sustainable. Focus on consistent execution.</div>
-                    </div>
-                `;
-            } else if (requiredRate <= 8) {
-                html += `
-                    <div class="assessment">
-                        <div style="font-size: 18px; font-weight: bold; color: #065f46; margin-bottom: 8px;">🎯 Challenging But Doable</div>
-                        <div style="color: #047857;">This is ambitious but achievable with focused effort. Many successful businesses sustain this rate.</div>
-                    </div>
-                `;
-            } else if (requiredRate <= 15) {
-                html += `
-                    <div class="assessment warning">
-                        <div style="font-size: 18px; font-weight: bold; color: #92400e; margin-bottom: 8px;">⚡ Aggressive Growth Required</div>
-                        <div style="color: #78350f;">This requires aggressive marketing and product-market fit. Consider extending your timeline or adjusting your goal.</div>
-                    </div>
-                `;
+            if (currentRevenue === 0) {
+                showZeroState();
             } else {
-                html += `
-                    <div class="assessment danger">
-                        <div style="font-size: 18px; font-weight: bold; color: #991b1b; margin-bottom: 8px;">🚨 Unrealistic Timeframe</div>
-                        <div style="color: #7f1d1d;">This growth rate is typically unsustainable. Consider a longer timeframe or a more modest goal to start.</div>
-                    </div>
-                `;
+                showGrowthJourney();
             }
-
-            document.getElementById('goalResults').innerHTML = html;
         }
 
-        // Initial calculations
-        calculate();
+        function resetJourney() {
+            document.getElementById('onboarding').style.display = 'block';
+            document.getElementById('dashboard').classList.remove('active');
+            document.getElementById('startRevenue').value = '';
+        }
+
+        function showZeroState() {
+            const content = document.getElementById('content');
+
+            content.innerHTML = `
+                <div class="section zero-state">
+                    <h2>🚀 Let's Make Your First Sale</h2>
+                    <p>You haven't made your first dollar online yet - but you're about to.<br>Here's what getting to your first milestones could look like:</p>
+                </div>
+
+                <div class="section">
+                    <h2>Your First $100/Month</h2>
+                    <p style="color: #6b7280; margin-bottom: 24px;">This is the hardest milestone. Once you hit this, everything changes.</p>
+
+                    <div class="path-card">
+                        <h4>💼 Freelancing/Services</h4>
+                        <p class="description">Sell your skills directly. One client paying $100/month, or 5 clients at $20/month.</p>
+                        <div class="examples">
+                            <strong>Examples:</strong> Writing, design, VA work, social media management, consulting
+                        </div>
+                    </div>
+
+                    <div class="path-card">
+                        <h4>📝 Digital Products</h4>
+                        <p class="description">Create once, sell many times. 10 sales of a $10 product, or 2 sales of a $50 course.</p>
+                        <div class="examples">
+                            <strong>Examples:</strong> Templates, guides, mini-courses, Notion templates, spreadsheets
+                        </div>
+                    </div>
+
+                    <div class="path-card">
+                        <h4>🎨 Content + Monetization</h4>
+                        <p class="description">Build an audience, monetize it. YouTube, blog, newsletter, TikTok.</p>
+                        <div class="examples">
+                            <strong>Examples:</strong> Ad revenue, sponsorships, affiliate links, tips/donations
+                        </div>
+                    </div>
+
+                    <div class="path-card">
+                        <h4>🛍️ E-commerce/Dropshipping</h4>
+                        <p class="description">Sell physical or digital products. Need ~3-5 sales depending on margins.</p>
+                        <div class="examples">
+                            <strong>Examples:</strong> Print on demand, dropshipping, handmade items, reselling
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>Once You Hit $100/Month...</h2>
+
+                    <div class="highlight">
+                        <div>If you grow at just 10% per month:</div>
+                        <div class="big">$313/mo</div>
+                        <div>in 12 months</div>
+                    </div>
+
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Month</th>
+                                <th>At 10% Growth</th>
+                                <th>At 15% Growth</th>
+                                <th>At 20% Growth</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${generateZeroGrowthTable()}
+                        </tbody>
+                    </table>
+
+                    <div class="insight-box">
+                        <div class="title">💡 The Truth About $100/Month</div>
+                        <div class="text">
+                            $100/month proves you can make money online. It proves someone will pay you.
+                            Most people never get here - they give up at $0. Once you're at $100,
+                            getting to $1,000 is just consistency. Don't underestimate this milestone.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>Your Path: $0 → $100 → $500 → $1,000</h2>
+                    <p style="color: #6b7280; margin-bottom: 24px;">Here's what these milestones mean for YOUR life:</p>
+
+                    <div class="growth-option">
+                        <h4>$100/month = Your First Proof</h4>
+                        <p style="color: #6b7280;">You can make money online. This changes everything psychologically.</p>
+                    </div>
+
+                    <div class="growth-option">
+                        <h4>$500/month = Covers Some Bills</h4>
+                        <p style="color: #6b7280;">Phone bill, groceries, car payment. Real impact on your life.</p>
+                    </div>
+
+                    <div class="growth-option">
+                        <h4>$1,000/month = Part-Time Income</h4>
+                        <p style="color: #6b7280;">This is what many people make at part-time jobs. You're doing it online.</p>
+                    </div>
+
+                    <div class="growth-option">
+                        <h4>$3,000/month = Full-Time Possible</h4>
+                        <p style="color: #6b7280;">In many places, this is enough to consider going full-time.</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function generateZeroGrowthTable() {
+            let html = '';
+            const start = 100;
+            const growthRates = [10, 15, 20];
+
+            for (let month of [1, 3, 6, 9, 12]) {
+                html += '<tr>';
+                html += `<td class="month">Month ${month}</td>`;
+                growthRates.forEach(rate => {
+                    const value = calculateRevenue(start, month, rate);
+                    html += `<td class="revenue">${formatCurrency(value)}</td>`;
+                });
+                html += '</tr>';
+            }
+            return html;
+        }
+
+        function showGrowthJourney() {
+            const content = document.getElementById('content');
+
+            // Determine milestones based on current revenue
+            const milestones = getMilestones(currentRevenue);
+            const stage = getStage(currentRevenue);
+
+            content.innerHTML = `
+                <div class="section">
+                    <h2>Your Next Milestones</h2>
+                    <p style="color: #6b7280; margin-bottom: 24px;">
+                        ${stage.message}
+                    </p>
+
+                    <div class="milestone-grid">
+                        ${milestones.map(m => `
+                            <div class="milestone">
+                                <div class="target">${formatCurrency(m.target)}</div>
+                                <div class="time">${m.months} months at 4% growth</div>
+                                <div class="context">${m.context}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    <div class="insight-box">
+                        <div class="title">🎯 ${stage.insight.title}</div>
+                        <div class="text">${stage.insight.text}</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>What Does 4% Monthly Growth Mean For YOU?</h2>
+
+                    <div class="highlight">
+                        <div>Starting from ${formatCurrency(currentRevenue)}</div>
+                        <div class="big">${formatCurrency(calculateRevenue(currentRevenue, 12, 4))}</div>
+                        <div>in just 12 months at 4% monthly growth</div>
+                    </div>
+
+                    <div style="margin: 32px 0;">
+                        <h3>Your Month-by-Month Journey</h3>
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Month</th>
+                                    <th>Your Revenue</th>
+                                    <th>Monthly Growth</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${generateGrowthTable(currentRevenue, 4)}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    ${currentRevenue >= 3 && currentRevenue <= 5000 ? `
+                        <div class="insight-box">
+                            <div class="title">🚀 You're Building Something Real</div>
+                            <div class="text">
+                                At ${formatCurrency(currentRevenue)}/month, you're past the hardest part - getting started.
+                                Most people never get here. 4% monthly growth from where you are means
+                                ${formatCurrency(calculateRevenue(currentRevenue, 12, 4))} in a year,
+                                ${formatCurrency(calculateRevenue(currentRevenue, 24, 4))} in 2 years.
+                                Don't quit now. You're on a rocket ship.
+                            </div>
+                        </div>
+                    ` : ''}
+                </div>
+
+                <div class="section">
+                    <h2>Play With Your Future</h2>
+                    <p style="color: #6b7280; margin-bottom: 24px;">
+                        Adjust the growth rate to see different scenarios for YOUR business
+                    </p>
+
+                    <div class="slider-container">
+                        <label style="font-weight: 600; margin-bottom: 16px; display: block;">Monthly Growth Rate</label>
+                        <input type="range" class="slider" id="growthSlider" min="1" max="20" value="4" step="0.5" oninput="updateGrowthScenario()">
+                        <div class="slider-label">
+                            <span>1%</span>
+                            <span>20%</span>
+                        </div>
+                        <div class="slider-value" id="sliderValue">4%</div>
+                    </div>
+
+                    <div id="scenarioResults"></div>
+                </div>
+
+                <div class="section">
+                    <h2>Compare: What If You Grow Faster?</h2>
+                    <p style="color: #6b7280; margin-bottom: 24px;">
+                        Small changes in growth rate = massive differences in YOUR outcome
+                    </p>
+
+                    ${generateComparisonCards(currentRevenue)}
+                </div>
+
+                <div class="section">
+                    <h2>What YOU Need to Hit Your Next Big Goal</h2>
+                    ${generateGoalCalculator(currentRevenue)}
+                </div>
+
+                <div class="section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                    <h2 style="color: white;">Your Reality Check</h2>
+                    <p style="margin-bottom: 24px; opacity: 0.95; font-size: 16px; line-height: 1.6;">
+                        ${getPersonalizedMotivation(currentRevenue)}
+                    </p>
+                </div>
+            `;
+
+            updateGrowthScenario();
+        }
+
+        function getMilestones(revenue) {
+            if (revenue < 100) {
+                return [
+                    { target: 100, months: Math.ceil(calculateMonths(revenue, 100, 4)), context: "Your first $100 - proves you can do this" },
+                    { target: 500, months: Math.ceil(calculateMonths(revenue, 500, 4)), context: "Covers some real bills" },
+                    { target: 1000, months: Math.ceil(calculateMonths(revenue, 1000, 4)), context: "Part-time income level" },
+                ];
+            } else if (revenue < 1000) {
+                return [
+                    { target: 1000, months: Math.ceil(calculateMonths(revenue, 1000, 4)), context: "Part-time income level" },
+                    { target: 2000, months: Math.ceil(calculateMonths(revenue, 2000, 4)), context: "Serious side income" },
+                    { target: 5000, months: Math.ceil(calculateMonths(revenue, 5000, 4)), context: "Could go full-time in some areas" },
+                ];
+            } else if (revenue < 5000) {
+                return [
+                    { target: 5000, months: Math.ceil(calculateMonths(revenue, 5000, 4)), context: "Full-time territory" },
+                    { target: 10000, months: Math.ceil(calculateMonths(revenue, 10000, 4)), context: "Comfortable living" },
+                    { target: 20000, months: Math.ceil(calculateMonths(revenue, 20000, 4)), context: "Strong business" },
+                ];
+            } else if (revenue < 20000) {
+                return [
+                    { target: 20000, months: Math.ceil(calculateMonths(revenue, 20000, 4)), context: "Strong business" },
+                    { target: 50000, months: Math.ceil(calculateMonths(revenue, 50000, 4)), context: "Life-changing income" },
+                    { target: 100000, months: Math.ceil(calculateMonths(revenue, 100000, 4)), context: "Six figures monthly" },
+                ];
+            } else {
+                return [
+                    { target: 50000, months: Math.ceil(calculateMonths(revenue, 50000, 4)), context: "Life-changing income" },
+                    { target: 100000, months: Math.ceil(calculateMonths(revenue, 100000, 4)), context: "Six figures monthly" },
+                    { target: 200000, months: Math.ceil(calculateMonths(revenue, 200000, 4)), context: "Elite territory" },
+                ];
+            }
+        }
+
+        function getStage(revenue) {
+            if (revenue < 100) {
+                return {
+                    message: "You're in the bootstrap phase. Every dollar counts right now.",
+                    insight: {
+                        title: "The First $100 Changes Everything",
+                        text: "This isn't about the money - it's about proof. Once you hit $100/month, you know you can make money online. That changes your entire psychology."
+                    }
+                };
+            } else if (revenue < 1000) {
+                return {
+                    message: "You've proven you can make money online. Now it's about consistency and growth.",
+                    insight: {
+                        title: "You're Past the Hardest Part",
+                        text: `At ${formatCurrency(revenue)}/month, you're further than 90% of people who start. Most quit before they ever make a dollar. You didn't. Now just keep going.`
+                    }
+                };
+            } else if (revenue < 5000) {
+                return {
+                    message: "This is real money. You're building a real business.",
+                    insight: {
+                        title: "You're Building Something Substantial",
+                        text: `${formatCurrency(revenue)}/month is more than most part-time jobs pay. And you're doing this online. At 4% monthly growth, you'll be at ${formatCurrency(calculateRevenue(revenue, 18, 4))}/month in 18 months. Keep going.`
+                    }
+                };
+            } else if (revenue < 20000) {
+                return {
+                    message: "You have a real business. This is full-time income territory.",
+                    insight: {
+                        title: "You're Already Winning",
+                        text: `${formatCurrency(revenue)}/month is life-changing money. If you maintain just 4% monthly growth, you'll 4x this in 3 years. Most businesses would kill for this position.`
+                    }
+                };
+            } else {
+                return {
+                    message: "You're running a serious business. This is about scale now.",
+                    insight: {
+                        title: "You've Made It",
+                        text: `${formatCurrency(revenue)}/month puts you in elite territory. At this level, 4% monthly growth means adding ${formatCurrency(revenue * 0.04)} in new revenue every single month. That's the power of compounding on a large base.`
+                    }
+                };
+            }
+        }
+
+        function generateGrowthTable(start, rate) {
+            let html = '';
+            let current = start;
+
+            for (let month = 0; month <= 12; month++) {
+                const prev = current;
+                current = month === 0 ? start : calculateRevenue(start, month, rate);
+                const change = month === 0 ? 0 : current - calculateRevenue(start, month - 1, rate);
+
+                html += `
+                    <tr>
+                        <td class="month">${month === 0 ? 'Start' : 'Month ' + month}</td>
+                        <td class="revenue">${formatCurrency(current)}</td>
+                        <td class="change">${month === 0 ? '-' : '+' + formatCurrency(change)}</td>
+                    </tr>
+                `;
+            }
+            return html;
+        }
+
+        function generateComparisonCards(start) {
+            const rates = [2, 4, 6, 8];
+            return rates.map(rate => {
+                const result = calculateRevenue(start, 12, rate);
+                const increase = result - start;
+                return `
+                    <div class="growth-option">
+                        <h4>${rate}% Monthly Growth</h4>
+                        <div class="result">${formatCurrency(result)}</div>
+                        <div class="timeline">In 12 months | +${formatCurrency(increase)} total</div>
+                        <p style="color: #6b7280; font-size: 14px; margin-top: 8px;">
+                            That's +${formatCurrency(increase / 12)}/month on average
+                        </p>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function generateGoalCalculator(start) {
+            const nextMilestone = getMilestones(start)[1].target;
+            const required4 = Math.ceil(calculateMonths(start, nextMilestone, 4));
+            const required6 = Math.ceil(calculateMonths(start, nextMilestone, 6));
+            const required8 = Math.ceil(calculateMonths(start, nextMilestone, 8));
+
+            return `
+                <p style="color: #6b7280; margin-bottom: 24px;">
+                    To get from ${formatCurrency(start)} to ${formatCurrency(nextMilestone)}:
+                </p>
+
+                <div class="growth-option">
+                    <h4>At 4% Monthly Growth</h4>
+                    <div class="result">${required4} months</div>
+                    <p style="color: #6b7280;">Steady, sustainable pace</p>
+                </div>
+
+                <div class="growth-option">
+                    <h4>At 6% Monthly Growth</h4>
+                    <div class="result">${required6} months</div>
+                    <p style="color: #6b7280;">Aggressive but achievable</p>
+                </div>
+
+                <div class="growth-option">
+                    <h4>At 8% Monthly Growth</h4>
+                    <div class="result">${required8} months</div>
+                    <p style="color: #6b7280;">Hyper-growth mode</p>
+                </div>
+            `;
+        }
+
+        function updateGrowthScenario() {
+            const rate = parseFloat(document.getElementById('growthSlider').value);
+            document.getElementById('sliderValue').textContent = rate + '%';
+
+            const result12 = calculateRevenue(currentRevenue, 12, rate);
+            const result24 = calculateRevenue(currentRevenue, 24, rate);
+            const result36 = calculateRevenue(currentRevenue, 36, rate);
+
+            document.getElementById('scenarioResults').innerHTML = `
+                <div class="highlight">
+                    <div>At ${rate}% monthly growth from ${formatCurrency(currentRevenue)}:</div>
+                    <div class="big">${formatCurrency(result12)}</div>
+                    <div>in 12 months</div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 24px;">
+                    <div class="growth-option">
+                        <h4>12 Months</h4>
+                        <div class="result">${formatCurrency(result12)}</div>
+                        <p style="color: #6b7280; font-size: 14px;">+${formatCurrency(result12 - currentRevenue)}</p>
+                    </div>
+                    <div class="growth-option">
+                        <h4>24 Months</h4>
+                        <div class="result">${formatCurrency(result24)}</div>
+                        <p style="color: #6b7280; font-size: 14px;">+${formatCurrency(result24 - currentRevenue)}</p>
+                    </div>
+                    <div class="growth-option">
+                        <h4>36 Months</h4>
+                        <div class="result">${formatCurrency(result36)}</div>
+                        <p style="color: #6b7280; font-size: 14px;">+${formatCurrency(result36 - currentRevenue)}</p>
+                    </div>
+                </div>
+
+                <div class="insight-box" style="margin-top: 24px;">
+                    <div class="title">💰 What This Means For YOU</div>
+                    <div class="text">
+                        At ${rate}% monthly, you're adding an average of ${formatCurrency((result12 - currentRevenue) / 12)}/month
+                        over the next year. That's real money adding up month after month.
+                        In 3 years, you'd ${result36 >= currentRevenue * 2 ? 'more than double' : 'significantly grow'} your business to ${formatCurrency(result36)}/month.
+                    </div>
+                </div>
+            `;
+        }
+
+        function getPersonalizedMotivation(revenue) {
+            if (revenue < 100) {
+                return `You're at the starting line. Most people never even get here - they just think about it. You're actually doing it. Get to that first $100. Once you do, you'll realize you can do anything.`;
+            } else if (revenue < 1000) {
+                return `You're making ${formatCurrency(revenue)}/month online. You've already done what 95% of people who "want to start a business" never do. You've proven you can make money on the internet. Now it's just about stacking more wins. Don't you dare quit.`;
+            } else if (revenue < 5000) {
+                return `${formatCurrency(revenue)}/month is real money. You're not dabbling anymore - you're building a real business. At 4% monthly growth, you'll be at ${formatCurrency(calculateRevenue(revenue, 24, 4))}/month in 2 years. That's full-time income in most places. Keep going.`;
+            } else if (revenue < 20000) {
+                return `You're at ${formatCurrency(revenue)}/month. This is full-time income. This is life-changing money. And if you just maintain 4% growth - which is modest and sustainable - you'll be at ${formatCurrency(calculateRevenue(revenue, 36, 4))}/month in 3 years. Let that sink in.`;
+            } else {
+                return `${formatCurrency(revenue)}/month puts you in the top 1% of online businesses. You've already made it. Now it's about scale. Even 4% monthly growth means you're adding ${formatCurrency(revenue * 0.04)} in NEW revenue every single month. That's what compounding on a big base looks like. Don't stop now.`;
+            }
+        }
     </script>
 </body>
 </html>
