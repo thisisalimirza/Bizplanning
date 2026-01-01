@@ -1,14 +1,16 @@
 # Compound Growth Calculator
 
-**A comprehensive financial planning app for internet entrepreneurs**
+**A comprehensive financial planning tool for internet entrepreneurs**
 
-Stop giving up on your business because you think 4% monthly growth is "too small." This app helps you understand the power of compound growth and why consistency beats everything.
+🌐 **[View Live Demo](#)** (Enable GitHub Pages in your repo settings!)
+
+Stop giving up on your business because you think 4% monthly growth is "too small." This tool helps you understand the power of compound growth and why consistency beats everything.
 
 ## 🎯 The Problem This Solves
 
 Many internet entrepreneurs shut down profitable businesses because they don't understand exponential growth. When you're growing at 4% per month, it *feels* slow. But that's actually a **60% annual growth rate** - something most traditional businesses would kill for.
 
-This app exists to help you:
+This tool exists to help you:
 - **Understand** how monthly growth compounds into massive annual returns
 - **Plan** realistic revenue goals based on sustainable growth rates
 - **Stay motivated** when growth feels slow but is actually excellent
@@ -33,7 +35,6 @@ This app exists to help you:
 - Set your revenue target and timeframe
 - Calculate exactly what monthly growth rate you need
 - Get realistic assessments of your goals (achievable, challenging, or unrealistic)
-- See month-by-month breakdown of what "winning" looks like
 - Understand what dollar amount you need to grow by each month
 
 ### 💡 Insights & Motivation
@@ -41,24 +42,31 @@ This app exists to help you:
 - Understand why consistency beats explosiveness
 - See real-world benchmarks for SaaS, e-commerce, content, and traditional businesses
 - Get reminded not to compare your Chapter 1 to someone else's Chapter 20
-- Learn from companies like Amazon that sustained ~10% monthly growth early on
 
 ## 🚀 Quick Start
 
+### Option 1: Use GitHub Pages (Recommended)
+
+1. Go to your repository Settings
+2. Navigate to "Pages" in the left sidebar
+3. Under "Source", select "Deploy from a branch"
+4. Select the `claude/cagr-calculator-app-IG81L` branch
+5. Select `/` (root) as the folder
+6. Click Save
+7. Wait a few minutes and your site will be live!
+
+### Option 2: Run Locally
+
+Simply open `index.html` in your web browser. That's it! No installation needed.
+
+### Option 3: Run the Expo App
+
 ```bash
-# Install dependencies
 npm install
-
-# Start the development server
 npm start
-
-# Run on your device
-# iOS: Scan QR code with Camera app
-# Android: Scan QR code with Expo Go app
-# Or press 'i' for iOS simulator, 'a' for Android emulator
 ```
 
-## 📱 Using the App
+## 📱 Using the Tool
 
 ### Calculator Tab
 1. Enter your current monthly revenue
@@ -103,7 +111,7 @@ Most entrepreneurs don't fail because they're not growing. They fail because the
 
 ## 🎓 For Whom?
 
-This app is for internet entrepreneurs who:
+This tool is for internet entrepreneurs who:
 - Are growing but feel like it's "not fast enough"
 - Want to set realistic revenue goals
 - Need to understand if their growth rate is actually good or bad
@@ -114,7 +122,7 @@ This app is for internet entrepreneurs who:
 
 ### "Should I shut down my SaaS?"
 You're at $5k MRR and growing 3-5% monthly. You feel like it's too slow.
-- Open the app → See that 4% monthly = 60% annual CAGR
+- Open the tool → See that 4% monthly = 60% annual CAGR
 - Check Benchmarks → See that 3-7% is healthy for SaaS
 - Set a Goal → Maybe you want $20k MRR in 24 months
 - Calculate → You need 5.9% monthly growth - challenging but doable
@@ -136,19 +144,11 @@ You're at $2k MRR and want $50k MRR in 6 months.
 
 ## 🛠️ Technical Details
 
-- **Framework**: React Native with Expo
-- **Language**: TypeScript for type safety
-- **Platform**: iOS, Android, and Web
-- **UI**: Custom design system optimized for mobile
-
-## 📄 Scripts
-
-```bash
-npm start          # Start development server
-npm run android    # Run on Android
-npm run ios        # Run on iOS
-npm run web        # Run in browser
-```
+- **Pure HTML/CSS/JavaScript** - No frameworks, no build process
+- **Fully responsive** - Works on desktop, tablet, and mobile
+- **No backend required** - 100% client-side
+- **GitHub Pages ready** - Just enable Pages in your repo settings
+- **Offline capable** - Works without internet after first load
 
 ## 🙏 Why This Exists
 
